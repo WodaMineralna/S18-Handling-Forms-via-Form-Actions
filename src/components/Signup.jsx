@@ -28,7 +28,7 @@ export default function Signup() {
     const acquisition = formData.getAll("acquisition");
     const terms = formData.get("terms");
 
-    const error = [];
+    let errors = [];
 
     if (!isEmail(email)) error.push(ERROR_MESSAGES.email);
     if (!hasMinLength(password, PASSWORD_MINLENGTH))
