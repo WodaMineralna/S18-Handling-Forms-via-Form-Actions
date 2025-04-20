@@ -1,7 +1,47 @@
+import {
+  isEmail,
+  isNotEmpty,
+  hasMinLength,
+  isEqualToOtherValue,
+} from "../util/validation";
+
+const PASSWORD_MINLENGTH = 6;
+
+const ERROR_MESSAGES = {
+  email: "Please enter a valid email.",
+  password: `Password must be at least ${PASSWORD_MINLENGTH} characters long.`,
+  confirmPassword: "Passwords must match.",
+  firstOrLastName: "Please enter first and last name.",
+  role: "Please select a role.",
+  acquisition: "Please select at least one option.",
+  terms: "You must agree to the terms and conditions.",
+};
+
 export default function Signup() {
   function signupAction(formData) {
-    const enteredEmail = formData.get('email')
-    console.log(enteredEmail)
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirm-password");
+    const firstName = formData.get("first-name");
+    const lastName = formData.get("last-name");
+    const role = formData.get("role");
+    const acquisition = formData.getAll("acquisition");
+    const terms = formData.get("terms");
+
+    const error = [];
+
+    if (!isEmail(email)) error.push(ERROR_MESSAGES.email);
+    if (!hasMinLength(password, PASSWORD_MINLENGTH))
+      error.push(ERROR_MESSAGES.password);
+    if (!isEqualToOtherValue(password, confirmPassword))
+      error.push(ERROR_MESSAGES.confirmPassword);
+    if (!isNotEmpty(firstName) || !isNotEmpty(lastName))
+      error.push(ERROR_MESSAGES.firstOrLastName);
+    if (!isNotEmpty(role)) error.push(ERROR_MESSAGES.role);
+    if (acquisition.length === 0) error.push(ERROR_MESSAGES.acquisition);
+    if (!terms) error.push(ERROR_MESSAGES.terms);
+
+    console.log(error); // testing
   }
 
   return (
