@@ -30,18 +30,18 @@ export default function Signup() {
 
     let errors = [];
 
-    if (!isEmail(email)) error.push(ERROR_MESSAGES.email);
+    if (!isEmail(email)) errors.push(ERROR_MESSAGES.email);
     if (!hasMinLength(password, PASSWORD_MINLENGTH))
-      error.push(ERROR_MESSAGES.password);
+      errors.push(ERROR_MESSAGES.password);
     if (!isEqualToOtherValue(password, confirmPassword))
-      error.push(ERROR_MESSAGES.confirmPassword);
+      errors.push(ERROR_MESSAGES.confirmPassword);
     if (!isNotEmpty(firstName) || !isNotEmpty(lastName))
-      error.push(ERROR_MESSAGES.firstOrLastName);
-    if (!isNotEmpty(role)) error.push(ERROR_MESSAGES.role);
-    if (acquisition.length === 0) error.push(ERROR_MESSAGES.acquisition);
-    if (!terms) error.push(ERROR_MESSAGES.terms);
+      errors.push(ERROR_MESSAGES.firstOrLastName);
+    if (!isNotEmpty(role)) errors.push(ERROR_MESSAGES.role);
+    if (acquisition.length === 0) errors.push(ERROR_MESSAGES.acquisition);
+    if (!terms) errors.push(ERROR_MESSAGES.terms);
 
-    console.log(error); // testing
+    console.log(errors); // testing
   }
 
   return (
