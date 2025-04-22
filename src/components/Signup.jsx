@@ -19,61 +19,61 @@ const ERROR_MESSAGES = {
   terms: "You must agree to the terms and conditions.",
 };
 
-export default function Signup() {
-  function signupAction(prevFormState, formData) {
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirm-password");
-    const firstName = formData.get("first-name");
-    const lastName = formData.get("last-name");
-    const role = formData.get("role");
-    const acquisition = formData.getAll("acquisition");
-    const terms = formData.get("terms");
+function signupAction(prevFormState, formData) {
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const confirmPassword = formData.get("confirm-password");
+  const firstName = formData.get("first-name");
+  const lastName = formData.get("last-name");
+  const role = formData.get("role");
+  const acquisition = formData.getAll("acquisition");
+  const terms = formData.get("terms");
 
-    let errors = [];
+  let errors = [];
 
-    if (!isEmail(email)) errors.push(ERROR_MESSAGES.email);
-    if (!hasMinLength(password, PASSWORD_MINLENGTH))
-      errors.push(ERROR_MESSAGES.password);
-    if (!isEqualToOtherValue(password, confirmPassword))
-      errors.push(ERROR_MESSAGES.confirmPassword);
-    if (!isNotEmpty(firstName) || !isNotEmpty(lastName))
-      errors.push(ERROR_MESSAGES.firstOrLastName);
-    if (!isNotEmpty(role)) errors.push(ERROR_MESSAGES.role);
-    if (acquisition.length === 0) errors.push(ERROR_MESSAGES.acquisition);
-    if (!terms) errors.push(ERROR_MESSAGES.terms);
+  if (!isEmail(email)) errors.push(ERROR_MESSAGES.email);
+  if (!hasMinLength(password, PASSWORD_MINLENGTH))
+    errors.push(ERROR_MESSAGES.password);
+  if (!isEqualToOtherValue(password, confirmPassword))
+    errors.push(ERROR_MESSAGES.confirmPassword);
+  if (!isNotEmpty(firstName) || !isNotEmpty(lastName))
+    errors.push(ERROR_MESSAGES.firstOrLastName);
+  if (!isNotEmpty(role)) errors.push(ERROR_MESSAGES.role);
+  if (acquisition.length === 0) errors.push(ERROR_MESSAGES.acquisition);
+  if (!terms) errors.push(ERROR_MESSAGES.terms);
 
-    console.log(errors); // testing
-    console.log("🔥 ENTERED VALUES: ", {
-      email,
-      password,
-      confirmPassword,
-      firstName,
-      lastName,
-      role,
-      acquisition,
-      terms,
-    }); // DEBUGGING
+  console.log(errors); // testing
+  console.log("🔥 ENTERED VALUES: ", {
+    email,
+    password,
+    confirmPassword,
+    firstName,
+    lastName,
+    role,
+    acquisition,
+    terms,
+  }); // DEBUGGING
 
-    if (errors.length > 0) {
-      return {
-        errors,
-        enteredValues: {
-          email,
-          password,
-          confirmPassword,
-          firstName,
-          lastName,
-          role,
-          acquisition,
-          terms,
-        },
-      };
-    }
-
-    return { errors: null };
+  if (errors.length > 0) {
+    return {
+      errors,
+      enteredValues: {
+        email,
+        password,
+        confirmPassword,
+        firstName,
+        lastName,
+        role,
+        acquisition,
+        terms,
+      },
+    };
   }
 
+  return { errors: null };
+}
+
+export default function Signup() {
   const [formState, formAction, pending] = useActionState(signupAction, {
     errors: null,
   });
