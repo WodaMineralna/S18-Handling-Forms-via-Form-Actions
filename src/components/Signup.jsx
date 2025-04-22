@@ -192,7 +192,7 @@ export default function Signup() {
             type="checkbox"
             id="terms-and-conditions"
             name="terms"
-            defaultValue={formState.enteredValues?.terms}
+            defaultChecked={formState.enteredValues?.terms}
           />
           I agree to the terms and conditions
         </label>
