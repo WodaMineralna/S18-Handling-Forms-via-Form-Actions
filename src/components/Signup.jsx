@@ -44,6 +44,16 @@ export default function Signup() {
     if (!terms) errors.push(ERROR_MESSAGES.terms);
 
     console.log(errors); // testing
+    console.log("🔥 ENTERED VALUES: ", {
+      email,
+      password,
+      confirmPassword,
+      firstName,
+      lastName,
+      role,
+      acquisition,
+      terms,
+    }); // DEBUGGING
 
     if (errors.length > 0) {
       return {
@@ -134,6 +144,7 @@ export default function Signup() {
         <select
           id="role"
           name="role"
+          key={formState.enteredValues?.role}
           defaultValue={formState.enteredValues?.role}
         >
           <option value="student">Student</option>
@@ -192,6 +203,7 @@ export default function Signup() {
             type="checkbox"
             id="terms-and-conditions"
             name="terms"
+            key={formState.enteredValues?.terms}
             defaultChecked={formState.enteredValues?.terms}
           />
           I agree to the terms and conditions
