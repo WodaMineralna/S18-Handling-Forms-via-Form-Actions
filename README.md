@@ -5,8 +5,9 @@ Practice code for Section 18 - Handling Forms via Form Actions, part of the cour
 This project covers
 - React 19 form actions - server handled submissions
 - Where form actions make sense vs client handling
-Project type
-- Based on a guided project
+  
+# Project type
+Implemented as part of a guided course project, with additional features and customizations added independently.
 
 ## Tech Stack
 - React
